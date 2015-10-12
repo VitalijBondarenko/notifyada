@@ -1,0 +1,58 @@
+with "notifyada.gpr";
+
+project NotifyAda_Test is
+
+   for Object_Dir use "obj";
+   type Gtkada_Kind_Type is
+      ("static", "relocatable");
+   Library_Type : Gtkada_Kind_Type := external ("LIBRARY_TYPE");
+
+   case Library_Type is
+
+      when "static" =>
+         for Source_Dirs use ("tests");
+         for Main use ("test_action.adb", "test.adb");
+
+      when "relocatable" =>
+         for Source_Dirs use (".", "tests");
+         for Main use ("notify_test.adb");
+   end case;
+
+   package Linker is
+
+      case Library_Type is
+
+         when "static" =>
+            for Default_Switches ("ada") use ("-lnotify", "-g");
+
+         when "relocatable" =>
+
+      end case;
+   end Linker;
+
+   package Compiler is
+
+      case Library_Type is
+
+         when "static" =>
+            for Default_Switches ("ada") use ("-g");
+
+         when "relocatable" =>
+
+      end case;
+   end Compiler;
+
+   package Builder is
+
+      case Library_Type is
+
+         when "static" =>
+            for Default_Switches ("ada") use ("-s", "-g");
+
+         when "relocatable" =>
+
+      end case;
+   end Builder;
+
+end NotifyAda_Test;
+
