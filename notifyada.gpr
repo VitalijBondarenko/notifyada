@@ -13,7 +13,7 @@ project NotifyAda is
          for Source_Dirs use (".", "src");
          for Library_Name use "notifyada";
          for Library_Dir use "lib";
-         for Library_Version use "libnotifyada.so.0.5";
+         for Library_Version use "libnotifyada.so.1.0";
 
       when "relocatable" =>
 
