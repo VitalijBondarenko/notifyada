@@ -186,8 +186,7 @@ package Notify.Notification is
 
    function Close
      (Notification : access Notify_Notification_Record;
-      Error        : access GError := null)
-      return Boolean;
+      Error        : access GError := null) return Boolean;
    --  Synchronously tells the notification server to hide the notification on
    --  the screen.
    --
@@ -196,8 +195,7 @@ package Notify.Notification is
    --  Returns      : TRUE on success, or FALSE on error with error filled in.
 
    function Get_Closed_Reason
-     (Notification : access Notify_Notification_Record)
-      return Integer;
+     (Notification : access Notify_Notification_Record) return Integer;
    --  Returns the closed reason code for the Notification. This is valid only
    --  after the "closed" signal is emitted.
    --

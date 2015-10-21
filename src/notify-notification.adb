@@ -82,8 +82,7 @@ package body Notify.Notification is
       function Internal
         (Summary   : UTF8_String;
          Body_Text : UTF8_String;
-         Icon_Name : UTF8_String)
-         return System.Address;
+         Icon_Name : UTF8_String) return System.Address;
       pragma Import (C, Internal, "notify_notification_new");
 
    begin
@@ -109,8 +108,7 @@ package body Notify.Notification is
         (Notification : System.Address;
          Summary      : UTF8_String;
          Body_Text    : UTF8_String;
-         Icon_Name    : UTF8_String)
-         return Gboolean;
+         Icon_Name    : UTF8_String) return Gboolean;
       pragma Import (C, Internal, "notify_notification_update");
 
    begin
@@ -131,8 +129,7 @@ package body Notify.Notification is
    is
       function Internal
         (Notification : System.Address;
-         Error        : access GError)
-         return Gboolean;
+         Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_show");
 
    begin
@@ -316,13 +313,11 @@ package body Notify.Notification is
 
    function Close
      (Notification : access Notify_Notification_Record;
-      Error        : access GError := null)
-      return Boolean
+      Error        : access GError := null) return Boolean
    is
       function Internal
         (Notification : System.Address;
-         Error        : access GError)
-         return Gboolean;
+         Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_close");
 
    begin
@@ -334,8 +329,7 @@ package body Notify.Notification is
    -----------------------
 
    function Get_Closed_Reason
-     (Notification : access Notify_Notification_Record)
-      return Integer
+     (Notification : access Notify_Notification_Record) return Integer
    is
       function Internal (Notification : System.Address) return Integer;
       pragma Import (C, Internal, "notify_notification_get_closed_reason");
@@ -413,6 +407,7 @@ package body Notify.Notification is
 
    function Cb_To_Address is new Ada.Unchecked_Conversion
      (Cb_GObject_Void, System.Address);
+
    function Address_To_Cb is new Ada.Unchecked_Conversion
      (System.Address, Cb_GObject_Void);
 

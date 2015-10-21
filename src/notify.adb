@@ -130,8 +130,7 @@ package body Notify is
         (Name         : access chars_ptr;
          Vendor       : access chars_ptr;
          Version      : access chars_ptr;
-         Spec_Version : access chars_ptr)
-         return Gboolean;
+         Spec_Version : access chars_ptr) return Gboolean;
       pragma Import (C, internal, "notify_get_server_info");
 
       R    : Boolean;
