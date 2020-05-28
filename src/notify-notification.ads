@@ -28,12 +28,12 @@
 
 --  Notify_Notification — A passive pop-up notification.
 
-with Gdk.Pixbuf;           use Gdk.Pixbuf;
-with Glib;                 use Glib;
-with Glib.Object;          use Glib.Object;
-with Glib.Error;           use Glib.Error;
+with Gdk.Pixbuf;   use Gdk.Pixbuf;
+with Glib;         use Glib;
+with Glib.Object;  use Glib.Object;
+with Glib.Error;   use Glib.Error;
 with Glib.Properties;
-with Glib.Variant;         use Glib.Variant;
+with Glib.Variant; use Glib.Variant;
 
 package Notify.Notification is
 

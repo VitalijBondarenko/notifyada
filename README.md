@@ -22,10 +22,6 @@ API documentation
 -----------------
 Documentation in HTML format can be found at `doc/html/index.html`.
 
-Example of use
---------------
-See NotifyAda_Test project in the file `notifyada_test.gpr`.
-
 License
 -------
 NotifyAda library released under the terms of the MIT License.
