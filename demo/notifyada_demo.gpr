@@ -1,11 +1,11 @@
 with "gnatstudio_startup.gpr";
 with "../notifyada.gpr";
 
-project Notifyada_Test is
+project Notifyada_Demo is
 
    for Source_Dirs use ("src");
    for Object_Dir use "obj";
-   for Main use ("test_action.adb", "test.adb");
+   for Main use ("demo.adb", "demo_action.adb");
 
-end Notifyada_Test;
+end Notifyada_Demo;
 

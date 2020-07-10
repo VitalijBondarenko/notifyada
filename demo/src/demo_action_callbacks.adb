@@ -33,7 +33,7 @@ with Glib;                     use Glib;
 with Gtk;                      use Gtk;
 with Gtk.Main;
 
-package body Test_Action_Callbacks is
+package body Demo_Action_Callbacks is
 
    ---------------------
    -- Action_Callback --
@@ -77,4 +77,4 @@ package body Test_Action_Callbacks is
       Put_Line ("Notification closed." & ASCII.LF & "Goodbye!");
    end On_Closed_Callback;
 
-end Test_Action_Callbacks;
+end Demo_Action_Callbacks;

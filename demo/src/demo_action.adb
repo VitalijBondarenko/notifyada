@@ -40,11 +40,11 @@ with Glib.Values;              use Glib.Values;
 
 with Notify;                   use Notify;
 with Notify.Notification;      use Notify.Notification;
-with Test_Action_Callbacks;    use Test_Action_Callbacks;
+with Demo_Action_Callbacks;    use Demo_Action_Callbacks;
 
 with GPS_Utils;                use GPS_Utils;
 
-procedure Test_Action is
+procedure Demo_Action is
    Notification : Notify_Notification;
    R            : Boolean;
    User_Data    : String_Ptr :=
@@ -57,20 +57,19 @@ begin
    Gtk.Main.Init;
 
    --  Init libnotify.
-   R := Notify.Init ("Notify_Ada");
+   R := Notify_Init ("Notify_Ada");
 
    --  Create new notification.
    G_New
      (Notification => Notification,
-      Summary      => "Test libnotify interface.",
-      Body_Text    => "Test adding action to a notification.",
+      Summary      => "Ada binding to the libnotify.",
+      Body_Text    => "Add an action to the notification.",
       Icon_Name    => "");
-   Set_Timeout (Notification, NOTIFY_EXPIRES_DEFAULT);
+   Notification.Set_Timeout (NOTIFY_EXPIRES_DEFAULT);
 
    --  Add action.
-   Add_Action
-     (Notification => Notification,
-      Action       => "default",
+   Notification.Add_Action
+     (Action       => "default",
       Label        => "Press Me",
       Callback     => Action_Callback'Access);
 
@@ -83,13 +82,15 @@ begin
       User_Data    => User_Data);
 
    --  Sets the category of the Notification.
-   Set_Category (Notification, "presence.online");
+   Notification.Set_Category ("presence.online");
 
    --  Connect signal "closed" handler.
-   On_Closed (Notification, On_Closed_Callback'Access);
+   Notification.On_Closed (On_Closed_Callback'Access);
 
    --  Show Notification on the screen.
-   R := Show (Notification);
+   R := Notification.Show;
 
    Gtk.Main.Main;
-end Test_Action;
+
+   Notify_Uninit;
+end Demo_Action;

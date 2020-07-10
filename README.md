@@ -6,17 +6,17 @@ Installation
 ------------
 NotifyAda depends on:
    * libnotify 0.7.x (http://ftp.gnome.org/pub/gnome/sources/libnotify/0.7/)
-   * GtkAda 3.x (http://libre.adacore.com/tools/gtkada/)
+   * GtkAda 3.x (https://github.com/AdaCore/gtkada)
 
 The library does not require special installation. The library's source tree
 can be put in a directory and used as-is.
 
 For users of GNAT compiler library has project file `notifyada.gpr`, which can
-be used in your project and in the GNAT Programming Studio (GPS).
+be used in your project and in the GNAT Studio.
 
 Example of use
 --------------
-See NotifyAda_Test project in the file `notifyada_test.gpr`.
+See NotifyAda_Demo project in the file `notifyada_demo.gpr`.
 
 API documentation
 -----------------
