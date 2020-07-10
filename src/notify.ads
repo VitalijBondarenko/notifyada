@@ -35,40 +35,40 @@ with Gtk.Enums;             use Gtk.Enums;
 
 package Notify is
 
-   function Init (App_Name : UTF8_String) return Boolean;
+   function Notify_Init (App_Name : UTF8_String) return Boolean;
    --  Initialized libnotify. This must be called before any other functions.
    --
    --  App_Name : The name of the application initializing libnotify.
    --  Returns  : TRUE if successful, or FALSE on error.
 
-   procedure Uninit;
+   procedure Notify_Uninit;
    --  Uninitialized libnotify.
    --  This should be called when the program no longer needs libnotify for
    --  the rest of its lifecycle, typically just before exitting.
 
-   function Is_Initted return Boolean;
+   function Notify_Is_Initted return Boolean;
    --  Gets whether or not libnotify is initialized.
    --
    --  Returns : TRUE if libnotify is initialized, or FALSE otherwise.
 
-   function Get_App_Name return UTF8_String;
+   function Notify_Get_App_Name return UTF8_String;
    --  Gets the application name registered.
    --
    --  Returns : The registered application name, passed to Notify_Init.
 
-   procedure Set_App_Name (App_Name : UTF8_String);
+   procedure Notify_Set_App_Name (App_Name : UTF8_String);
    --  Sets the application name.
    --
    --  App_Name : The name of the application.
 
-   function Get_Server_Caps return Gtk.Enums.String_List.Glist;
+   function Notify_Get_Server_Caps return Gtk.Enums.String_List.Glist;
    --  Synchronously queries the server for its capabilities and returns them
    --  in a String_List.
    --
    --  Returns : a String_List of server capability strings. Free the list
    --            with Free_String_List.
 
-   function Get_Server_Info
+   function Notify_Get_Server_Info
      (Name         : out String_Ptr;
       Vendor       : out String_Ptr;
       Version      : out String_Ptr;

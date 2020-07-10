@@ -75,14 +75,14 @@ package Notify.Notification is
    --  Icon_Name    : The optional icon theme icon name or filename.
 
    procedure Initialize
-     (Notification : access Notify_Notification_Record'Class;
+     (Notification : not null access Notify_Notification_Record'Class;
       Summary      : UTF8_String;
       Body_Text    : UTF8_String;
       Icon_Name    : UTF8_String);
    --  Initializes a newly created Notification.
 
    function Update
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Summary      : UTF8_String;
       Body_Text    : UTF8_String := "";
       Icon_Name    : UTF8_String := "") return Boolean;
@@ -96,7 +96,7 @@ package Notify.Notification is
    --  Returns      : TRUE, unless an invalid parameter was passed.
 
    function Show
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Error        : access GError := null) return Boolean;
    --  Tells the notification server to display the notification on the screen.
    --
@@ -106,7 +106,7 @@ package Notify.Notification is
    --                 set error.
 
    procedure Set_Timeout
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Timeout      : Integer);
    --  Sets the timeout of the Notification. To set the default time, pass
    --  NOTIFY_EXPIRES_DEFAULT as timeout. To set the notification to never
@@ -118,7 +118,7 @@ package Notify.Notification is
    --  Timeout      : The timeout in milliseconds.
 
    procedure Set_Category
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Category     : String);
    --  Sets the category of this Notification. This can be used by the
    --  notification server to filter or display the data in a certain way.
@@ -127,7 +127,7 @@ package Notify.Notification is
    --  Category     : The category.
 
    procedure Set_Urgency
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Urgency      : Notify_Urgency);
    --  Sets the urgency level of this notification.
    --  See: Notify_Urgency
@@ -136,7 +136,7 @@ package Notify.Notification is
    --  Urgency      : The urgency level.
 
    procedure Set_Image_From_Pixbuf
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Pixbuf       : Gdk_Pixbuf);
    --  Sets the image in the notification from a GdkPixbuf.
    --
@@ -144,7 +144,7 @@ package Notify.Notification is
    --  Pixbuf       : The image.
 
    procedure Set_Hint
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Key          : String;
       Value        : GVariant);
    --  Sets a hint for Key with value Value. If Value is NULL, a previously
@@ -155,7 +155,8 @@ package Notify.Notification is
    --  Key          : The hint key.
    --  Value        : The hint value, or NULL to unset the hint.
 
-   procedure Clear_Hints (Notification : access Notify_Notification_Record);
+   procedure Clear_Hints
+     (Notification : not null access Notify_Notification_Record);
    --  Clears all hints from the notification.
    --
    --  Notification : The notification.
@@ -179,13 +180,14 @@ package Notify.Notification is
    --  Label        : The human-readable action label.
    --  Callback     : The action's callback function.
 
-   procedure Clear_Actions (Notification : access Notify_Notification_Record);
+   procedure Clear_Actions
+     (Notification : not null access Notify_Notification_Record);
    --  Clears all actions from the notification.
    --
    --  Notification : The notification.
 
    function Close
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Error        : access GError := null) return Boolean;
    --  Synchronously tells the notification server to hide the notification on
    --  the screen.
@@ -195,7 +197,7 @@ package Notify.Notification is
    --  Returns      : TRUE on success, or FALSE on error with error filled in.
 
    function Get_Closed_Reason
-     (Notification : access Notify_Notification_Record) return Integer;
+     (Notification : not null access Notify_Notification_Record) return Integer;
    --  Returns the closed reason code for the Notification. This is valid only
    --  after the "closed" signal is emitted.
    --

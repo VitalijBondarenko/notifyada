@@ -35,43 +35,43 @@ package body Notify is
    -- Init --
    ----------
 
-   function Init (App_Name : UTF8_String) return Boolean is
+   function Notify_Init (App_Name : UTF8_String) return Boolean is
       function Internal (App_Name : UTF8_String) return Gboolean;
       pragma Import (C, Internal, "notify_init");
 
    begin
       return 0 /= Internal (App_Name & ASCII.NUL);
-   end Init;
+   end Notify_Init;
 
    ------------
    -- Uninit --
    ------------
 
-   procedure Uninit is
+   procedure Notify_Uninit is
       procedure Internal;
       pragma Import (C, Internal, "notify_uninit");
 
    begin
       Internal;
-   end Uninit;
+   end Notify_Uninit;
 
    ----------------
    -- Is_Initted --
    ----------------
 
-   function Is_Initted return Boolean is
+   function Notify_Is_Initted return Boolean is
       function Internal return Gboolean;
       pragma Import (C, Internal, "notify_is_initted");
 
    begin
       return 0 /= Internal;
-   end Is_Initted;
+   end Notify_Is_Initted;
 
    ------------------
    -- Get_App_Name --
    ------------------
 
-   function Get_App_Name return UTF8_String is
+   function Notify_Get_App_Name return UTF8_String is
       function Internal return chars_ptr;
       pragma Import (C, Internal, "notify_get_app_name");
 
@@ -87,25 +87,25 @@ package body Notify is
             return N;
          end;
       end if;
-   end Get_App_Name;
+   end Notify_Get_App_Name;
 
    ------------------
    -- Set_App_Name --
    ------------------
 
-   procedure Set_App_Name (App_Name : UTF8_String) is
+   procedure Notify_Set_App_Name (App_Name : UTF8_String) is
       procedure Internal (App_Name : UTF8_String);
       pragma Import (C, Internal, "notify_set_app_name");
 
    begin
       Internal (App_Name & ASCII.NUL);
-   end Set_App_Name;
+   end Notify_Set_App_Name;
 
    ---------------------
    -- Get_Server_Caps --
    ---------------------
 
-   function Get_Server_Caps return Gtk.Enums.String_List.Glist is
+   function Notify_Get_Server_Caps return Gtk.Enums.String_List.Glist is
       function Internal return System.Address;
       pragma Import (C, Internal, "notify_get_server_caps");
 
@@ -114,13 +114,13 @@ package body Notify is
    begin
       String_List.Set_Object (List, Internal);
       return List;
-   end Get_Server_Caps;
+   end Notify_Get_Server_Caps;
 
    ---------------------
    -- Get_Server_Info --
    ---------------------
 
-   function Get_Server_Info
+   function Notify_Get_Server_Info
      (Name         : out String_Ptr;
       Vendor       : out String_Ptr;
       Version      : out String_Ptr;
@@ -150,6 +150,6 @@ package body Notify is
       end if;
 
       return R;
-   end Get_Server_Info;
+   end Notify_Get_Server_Info;
 
 end Notify;

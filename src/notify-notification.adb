@@ -49,7 +49,6 @@ package body Notify.Notification is
    function Notify_Notification_Get_Type return Glib.GType is
       function Internal return GType;
       pragma Import (C, Internal, "notify_notification_get_type");
-
    begin
       return Internal;
    end Notify_Notification_Get_Type;
@@ -74,7 +73,7 @@ package body Notify.Notification is
    ----------------
 
    procedure Initialize
-     (Notification : access Notify_Notification_Record'Class;
+     (Notification : not null access Notify_Notification_Record'Class;
       Summary      : UTF8_String;
       Body_Text    : UTF8_String;
       Icon_Name    : UTF8_String)
@@ -84,7 +83,6 @@ package body Notify.Notification is
          Body_Text : UTF8_String;
          Icon_Name : UTF8_String) return System.Address;
       pragma Import (C, Internal, "notify_notification_new");
-
    begin
       Set_Object
         (Notification,
@@ -99,7 +97,7 @@ package body Notify.Notification is
    ------------
 
    function Update
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Summary      : UTF8_String;
       Body_Text    : UTF8_String := "";
       Icon_Name    : UTF8_String := "") return Boolean
@@ -110,7 +108,6 @@ package body Notify.Notification is
          Body_Text    : UTF8_String;
          Icon_Name    : UTF8_String) return Gboolean;
       pragma Import (C, Internal, "notify_notification_update");
-
    begin
       return 0 /= Internal
         (Get_Object (Notification),
@@ -124,14 +121,13 @@ package body Notify.Notification is
    ----------
 
    function Show
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Error        : access GError := null) return Boolean
    is
       function Internal
         (Notification : System.Address;
          Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_show");
-
    begin
       return 0 /= Internal (Get_Object (Notification), Error);
    end Show;
@@ -141,14 +137,13 @@ package body Notify.Notification is
    -----------------
 
    procedure Set_Timeout
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Timeout      : Integer)
    is
       procedure Internal
         (Notification : System.Address;
          Timeout      : Integer);
       pragma Import (C, Internal, "notify_notification_set_timeout");
-
    begin
       Internal (Get_Object (Notification), Timeout);
    end Set_Timeout;
@@ -158,14 +153,13 @@ package body Notify.Notification is
    ------------------
 
    procedure Set_Category
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Category     : String)
    is
       procedure Internal
         (Notification : System.Address;
          Category     : String);
       pragma Import (C, Internal, "notify_notification_set_category");
-
    begin
       Internal (Get_Object (Notification), Category & ASCII.NUL);
    end Set_Category;
@@ -175,14 +169,13 @@ package body Notify.Notification is
    -----------------
 
    procedure Set_Urgency
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Urgency      : Notify_Urgency)
    is
       procedure Internal
         (Notification : System.Address;
          Urgency      : Notify_Urgency);
       pragma Import (C, Internal, "notify_notification_set_urgency");
-
    begin
       Internal (Get_Object (Notification), Urgency);
    end Set_Urgency;
@@ -192,14 +185,13 @@ package body Notify.Notification is
    ---------------------------
 
    procedure Set_Image_From_Pixbuf
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Pixbuf       : Gdk_Pixbuf)
    is
       procedure Internal
         (Notification : System.Address;
          Pixbuf       : System.Address);
       pragma Import (C, Internal, "notify_notification_set_image_from_pixbuf");
-
    begin
       Internal (Get_Object (Notification), Get_Object (Pixbuf));
    end Set_Image_From_Pixbuf;
@@ -209,7 +201,7 @@ package body Notify.Notification is
    --------------
 
    procedure Set_Hint
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Key          : String;
       Value        : GVariant)
    is
@@ -218,7 +210,6 @@ package body Notify.Notification is
          Key          : String;
          Value        : System.Address);
       pragma Import (C, Internal, "notify_notification_set_hint");
-
    begin
       Internal
         (Get_Object (Notification), Key & ASCII.NUL, Get_Object (Value));
@@ -228,10 +219,11 @@ package body Notify.Notification is
    -- Clear_Hints --
    -----------------
 
-   procedure Clear_Hints (Notification : access Notify_Notification_Record) is
+   procedure Clear_Hints
+     (Notification : not null access Notify_Notification_Record)
+   is
       procedure Internal (Notification : System.Address);
       pragma Import (C, Internal, "notify_notification_clear_hints");
-
    begin
       Internal (Get_Object (Notification));
    end Clear_Hints;
@@ -260,7 +252,6 @@ package body Notify.Notification is
       Proc              : constant Notify_Action_Callback_Void :=
         To_Notify_Action_Callback_Void (User_Data);
       Stub_Notification : Notify_Notification_Record;
-
    begin
       Proc
         (Notify_Notification (Get_User_Data (Notification, Stub_Notification)),
@@ -298,11 +289,10 @@ package body Notify.Notification is
    -------------------
 
    procedure Clear_Actions
-     (Notification : access Notify_Notification_Record)
+     (Notification : not null access Notify_Notification_Record)
    is
       procedure Internal (Notification : System.Address);
       pragma Import (C, Internal, "notify_notification_clear_actions");
-
    begin
       Internal (Get_Object (Notification));
    end Clear_Actions;
@@ -312,14 +302,13 @@ package body Notify.Notification is
    -----------
 
    function Close
-     (Notification : access Notify_Notification_Record;
+     (Notification : not null access Notify_Notification_Record;
       Error        : access GError := null) return Boolean
    is
       function Internal
         (Notification : System.Address;
          Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_close");
-
    begin
       return 0 /= Internal (Get_Object (Notification), Error);
    end Close;
@@ -329,11 +318,10 @@ package body Notify.Notification is
    -----------------------
 
    function Get_Closed_Reason
-     (Notification : access Notify_Notification_Record) return Integer
+     (Notification : not null access Notify_Notification_Record) return Integer
    is
       function Internal (Notification : System.Address) return Integer;
       pragma Import (C, Internal, "notify_notification_get_closed_reason");
-
    begin
       return Internal (Get_Object (Notification));
    end Get_Closed_Reason;
@@ -367,7 +355,6 @@ package body Notify.Notification is
          D                 : constant Users.Internal_Data_Access :=
            Users.Convert (User_Data);
          Stub_Notification : Notify_Notification_Record;
-
       begin
          To_Notify_Action_Callback_Void (D.Func)
            (Notify_Notification
@@ -500,7 +487,6 @@ package body Notify.Notification is
       H   : constant Cb_GObject_Void := Address_To_Cb (Get_Callback (Closure));
       Obj : constant Glib.Object.GObject :=
         Glib.Object.Convert (Get_Data (Closure));
-
    begin
       H (Obj);
    exception when E : others => Process_Exception (E);
@@ -524,7 +510,6 @@ package body Notify.Notification is
         Address_To_Cb (Get_Callback (Closure));
       Obj : constant Notify_Notification :=
         Notify_Notification (Unchecked_To_Object (Params, 0));
-
    begin
       H (Obj);
    exception when E : others => Process_Exception (E);
