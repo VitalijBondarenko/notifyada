@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 --                                                                          --
--- Copyright (c) 2013-2015 Vitalij Bondarenko <vibondare@gmail.com>         --
+-- Copyright (c) 2014-2021 Vitalii Bondarenko <vibondare@gmail.com>         --
 --                                                                          --
 ------------------------------------------------------------------------------
 --                                                                          --
@@ -28,10 +28,8 @@
 
 --  Notify library API
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-
-with Glib;                  use Glib;
-with Gtk.Enums;             use Gtk.Enums;
+with Glib;      use Glib;
+with Gtk.Enums; use Gtk.Enums;
 
 package Notify is
 

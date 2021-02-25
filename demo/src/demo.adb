@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 --                                                                          --
--- Copyright (c) 2014-2015 Vitalij Bondarenko <vibondare@gmail.com>         --
+-- Copyright (c) 2014-2021 Vitalii Bondarenko <vibondare@gmail.com>         --
 --                                                                          --
 ------------------------------------------------------------------------------
 --                                                                          --
@@ -31,7 +31,7 @@ with Ada.Text_IO;         use Ada.Text_IO;
 with Glib;                use Glib;
 with Glib.Glist;          use Glib.Glist;
 with Gtk.Enums;           use Gtk.Enums;
-use Gtk.Enums.String_List;
+                          use Gtk.Enums.String_List;
 with Gtk.Main;
 
 with Notify;              use Notify;
