@@ -155,6 +155,16 @@ package Notify.Notification is
    --  Key          : The hint key.
    --  Value        : The hint value, or NULL to unset the hint.
 
+   procedure Set_App_Name
+     (Notification : not null access Notify_Notification_Record;
+      App_Name     : String);
+   --  Sets the application name for the Notification. If this function is not
+   --  called or if App_Name is blank, the application name will be set from
+   --  the value used in Notify_Init or overridden with Notify_Set_App_Name.
+   --
+   --  Notification : A Notify_Notification.
+   --  App_Name     : The localised application name.
+
    procedure Clear_Hints
      (Notification : not null access Notify_Notification_Record);
    --  Clears all hints from the notification.

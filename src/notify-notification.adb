@@ -79,17 +79,16 @@ package body Notify.Notification is
       Icon_Name    : UTF8_String)
    is
       function Internal
-        (Summary   : UTF8_String;
-         Body_Text : UTF8_String;
-         Icon_Name : UTF8_String) return System.Address;
+        (Summary   : chars_ptr;
+         Body_Text : chars_ptr;
+         Icon_Name : chars_ptr) return System.Address;
       pragma Import (C, Internal, "notify_notification_new");
    begin
-      Set_Object
-        (Notification,
-         Internal
-           (Summary & ASCII.NUL,
-            Body_Text & ASCII.NUL,
-            Icon_Name & ASCII.NUL));
+      Notification.Set_Object
+        (Internal
+           (New_String (Summary),
+            New_String (Body_Text),
+            New_String (Icon_Name)));
    end Initialize;
 
    ------------
@@ -104,16 +103,16 @@ package body Notify.Notification is
    is
       function Internal
         (Notification : System.Address;
-         Summary      : UTF8_String;
-         Body_Text    : UTF8_String;
-         Icon_Name    : UTF8_String) return Gboolean;
+         Summary      : chars_ptr;
+         Body_Text    : chars_ptr;
+         Icon_Name    : chars_ptr) return Gboolean;
       pragma Import (C, Internal, "notify_notification_update");
    begin
       return 0 /= Internal
-        (Get_Object (Notification),
-         Summary & ASCII.NUL,
-         Body_Text & ASCII.NUL,
-         Icon_Name & ASCII.NUL);
+        (Notification.Get_Object,
+         New_String (Summary),
+         New_String (Body_Text),
+         New_String (Icon_Name));
    end Update;
 
    ----------
@@ -129,7 +128,7 @@ package body Notify.Notification is
          Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_show");
    begin
-      return 0 /= Internal (Get_Object (Notification), Error);
+      return 0 /= Internal (Notification.Get_Object, Error);
    end Show;
 
    -----------------
@@ -145,7 +144,7 @@ package body Notify.Notification is
          Timeout      : Integer);
       pragma Import (C, Internal, "notify_notification_set_timeout");
    begin
-      Internal (Get_Object (Notification), Timeout);
+      Internal (Notification.Get_Object, Timeout);
    end Set_Timeout;
 
    ------------------
@@ -158,10 +157,10 @@ package body Notify.Notification is
    is
       procedure Internal
         (Notification : System.Address;
-         Category     : String);
+         Category     : chars_ptr);
       pragma Import (C, Internal, "notify_notification_set_category");
    begin
-      Internal (Get_Object (Notification), Category & ASCII.NUL);
+      Internal (Notification.Get_Object, New_String (Category));
    end Set_Category;
 
    -----------------
@@ -177,7 +176,7 @@ package body Notify.Notification is
          Urgency      : Notify_Urgency);
       pragma Import (C, Internal, "notify_notification_set_urgency");
    begin
-      Internal (Get_Object (Notification), Urgency);
+      Internal (Notification.Get_Object, Urgency);
    end Set_Urgency;
 
    ---------------------------
@@ -193,7 +192,7 @@ package body Notify.Notification is
          Pixbuf       : System.Address);
       pragma Import (C, Internal, "notify_notification_set_image_from_pixbuf");
    begin
-      Internal (Get_Object (Notification), Get_Object (Pixbuf));
+      Internal (Notification.Get_Object, Pixbuf.Get_Object);
    end Set_Image_From_Pixbuf;
 
    --------------
@@ -207,13 +206,26 @@ package body Notify.Notification is
    is
       procedure Internal
         (Notification : System.Address;
-         Key          : String;
+         Key          : chars_ptr;
          Value        : System.Address);
       pragma Import (C, Internal, "notify_notification_set_hint");
    begin
-      Internal
-        (Get_Object (Notification), Key & ASCII.NUL, Get_Object (Value));
+      Internal (Notification.Get_Object, New_String (Key), Value.Get_Object);
    end Set_Hint;
+
+   ------------------
+   -- Set_App_Name --
+   ------------------
+
+   procedure Set_App_Name
+     (Notification : not null access Notify_Notification_Record;
+      App_Name     : String)
+   is
+      procedure Internal (Notification : System.Address; App_Name : chars_ptr);
+      pragma Import (C, Internal, "notify_notification_set_app_name");
+   begin
+      Internal (Notification.Get_Object, New_String (App_Name));
+   end Set_App_Name;
 
    -----------------
    -- Clear_Hints --
@@ -225,7 +237,7 @@ package body Notify.Notification is
       procedure Internal (Notification : System.Address);
       pragma Import (C, Internal, "notify_notification_clear_hints");
    begin
-      Internal (Get_Object (Notification));
+      Internal (Notification.Get_Object);
    end Clear_Hints;
 
    ----------------
@@ -276,7 +288,7 @@ package body Notify.Notification is
    is
    begin
       C_Notify_Notification_Add_Action
-        (Get_Object (Notification),
+        (Notification.Get_Object,
          New_String (Action),
          New_String (Label),
          C_Action_Cb'Address,
@@ -294,7 +306,7 @@ package body Notify.Notification is
       procedure Internal (Notification : System.Address);
       pragma Import (C, Internal, "notify_notification_clear_actions");
    begin
-      Internal (Get_Object (Notification));
+      Internal (Notification.Get_Object);
    end Clear_Actions;
 
    -----------
@@ -310,7 +322,7 @@ package body Notify.Notification is
          Error        : access GError) return Gboolean;
       pragma Import (C, Internal, "notify_notification_close");
    begin
-      return 0 /= Internal (Get_Object (Notification), Error);
+      return 0 /= Internal (Notification.Get_Object, Error);
    end Close;
 
    -----------------------
@@ -323,7 +335,7 @@ package body Notify.Notification is
       function Internal (Notification : System.Address) return Integer;
       pragma Import (C, Internal, "notify_notification_get_closed_reason");
    begin
-      return Internal (Get_Object (Notification));
+      return Internal (Notification.Get_Object);
    end Get_Closed_Reason;
 
    ----------------------------------
@@ -372,7 +384,7 @@ package body Notify.Notification is
       is
       begin
          C_Notify_Notification_Add_Action
-           (Get_Object (Notification),
+           (Notification.Get_Object,
             New_String (Action),
             New_String (Label),
             C_Action_Cb'Address,
@@ -398,19 +410,6 @@ package body Notify.Notification is
    function Address_To_Cb is new Ada.Unchecked_Conversion
      (System.Address, Cb_GObject_Void);
 
-   procedure Connect
-     (Object  : access Notify_Notification_Record'Class;
-      C_Name  : Glib.Signal_Name;
-      Handler : Cb_Notify_Notification_Void;
-      After   : Boolean);
-
-   procedure Connect_Slot
-     (Object  : access Notify_Notification_Record'Class;
-      C_Name  : Glib.Signal_Name;
-      Handler : Cb_GObject_Void;
-      After   : Boolean;
-      Slot    : access Glib.Object.GObject_Record'Class := null);
-
    procedure Marsh_GObject_Void
      (Closure         : GClosure;
       Return_Value    : Glib.Values.GValue;
@@ -428,46 +427,6 @@ package body Notify.Notification is
       Invocation_Hint : System.Address;
       User_Data       : System.Address);
    pragma Convention (C, Marsh_Notify_Notification_Void);
-
-   -------------
-   -- Connect --
-   -------------
-
-   procedure Connect
-     (Object  : access Notify_Notification_Record'Class;
-      C_Name  : Glib.Signal_Name;
-      Handler : Cb_Notify_Notification_Void;
-      After   : Boolean)
-   is
-   begin
-      Unchecked_Do_Signal_Connect
-        (Object     => Object,
-         C_Name     => C_Name,
-         Marshaller => Marsh_Notify_Notification_Void'Access,
-         Handler    => Cb_To_Address (Handler),
-         After      => After);
-   end Connect;
-
-   ------------------
-   -- Connect_Slot --
-   ------------------
-
-   procedure Connect_Slot
-     (Object  : access Notify_Notification_Record'Class;
-      C_Name  : Glib.Signal_Name;
-      Handler : Cb_GObject_Void;
-      After   : Boolean;
-      Slot    : access Glib.Object.GObject_Record'Class := null)
-   is
-   begin
-      Unchecked_Do_Signal_Connect
-        (Object      => Object,
-         C_Name      => C_Name,
-         Marshaller  => Marsh_GObject_Void'Access,
-         Handler     => Cb_To_Address (Handler),
-         Slot_Object => Slot,
-         After       => After);
-   end Connect_Slot;
 
    ------------------------
    -- Marsh_GObject_Void --
@@ -525,7 +484,14 @@ package body Notify.Notification is
       After : Boolean := False)
    is
    begin
-      Connect (Self, Signal_Closed & ASCII.NUL, Call, After);
+      Unchecked_Do_Signal_Connect
+        (Object      => Self,
+         C_Name      => Signal_Closed & ASCII.NUL,
+         Marshaller  => Marsh_Notify_Notification_Void'Access,
+         Handler     => Cb_To_Address (Call),
+         Destroy     => System.Null_Address,
+         After       => After,
+         Slot_Object => null);
    end On_Closed;
 
    procedure On_Closed
@@ -535,7 +501,14 @@ package body Notify.Notification is
       After : Boolean := False)
    is
    begin
-      Connect_Slot (Self, Signal_Closed & ASCII.NUL, Call, After, Slot);
+      Unchecked_Do_Signal_Connect
+        (Object      => Self,
+         C_Name      => Signal_Closed & ASCII.NUL,
+         Marshaller  => Marsh_Notify_Notification_Void'Access,
+         Handler     => Cb_To_Address (Call),
+         Destroy     => System.Null_Address,
+         After       => After,
+         Slot_Object => Slot);
    end On_Closed;
 
 end Notify.Notification;

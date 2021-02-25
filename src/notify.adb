@@ -31,52 +31,58 @@ with System;               use System;
 
 package body Notify is
 
-   ----------
-   -- Init --
-   ----------
+   -----------------
+   -- Notify_Init --
+   -----------------
 
    function Notify_Init (App_Name : UTF8_String) return Boolean is
-      function Internal (App_Name : UTF8_String) return Gboolean;
+      function Internal (App_Name : chars_ptr) return Gboolean;
       pragma Import (C, Internal, "notify_init");
-
    begin
-      return 0 /= Internal (App_Name & ASCII.NUL);
+      return 0 /= Internal (New_String (App_Name));
    end Notify_Init;
 
-   ------------
-   -- Uninit --
-   ------------
+   -----------------
+   -- Notify_Init --
+   -----------------
+
+   procedure Notify_Init (App_Name : UTF8_String) is
+      Success : Boolean;
+   begin
+      Success := Notify_Init (App_Name);
+   end Notify_Init;
+
+   -------------------
+   -- Notify_Uninit --
+   -------------------
 
    procedure Notify_Uninit is
       procedure Internal;
       pragma Import (C, Internal, "notify_uninit");
-
    begin
       Internal;
    end Notify_Uninit;
 
-   ----------------
-   -- Is_Initted --
-   ----------------
+   -----------------------
+   -- Notify_Is_Initted --
+   -----------------------
 
    function Notify_Is_Initted return Boolean is
       function Internal return Gboolean;
       pragma Import (C, Internal, "notify_is_initted");
-
    begin
       return 0 /= Internal;
    end Notify_Is_Initted;
 
-   ------------------
-   -- Get_App_Name --
-   ------------------
+   -------------------------
+   -- Notify_Get_App_Name --
+   -------------------------
 
    function Notify_Get_App_Name return UTF8_String is
       function Internal return chars_ptr;
       pragma Import (C, Internal, "notify_get_app_name");
 
       Name : chars_ptr := Internal;
-
    begin
       if Name = Null_Ptr then
          return "";
@@ -89,36 +95,34 @@ package body Notify is
       end if;
    end Notify_Get_App_Name;
 
-   ------------------
-   -- Set_App_Name --
-   ------------------
+   -------------------------
+   -- Notify_Set_App_Name --
+   -------------------------
 
    procedure Notify_Set_App_Name (App_Name : UTF8_String) is
-      procedure Internal (App_Name : UTF8_String);
+      procedure Internal (App_Name : chars_ptr);
       pragma Import (C, Internal, "notify_set_app_name");
-
    begin
-      Internal (App_Name & ASCII.NUL);
+      Internal (New_String (App_Name));
    end Notify_Set_App_Name;
 
-   ---------------------
-   -- Get_Server_Caps --
-   ---------------------
+   ----------------------------
+   -- Notify_Get_Server_Caps --
+   ----------------------------
 
    function Notify_Get_Server_Caps return Gtk.Enums.String_List.Glist is
       function Internal return System.Address;
       pragma Import (C, Internal, "notify_get_server_caps");
 
       List : Gtk.Enums.String_List.Glist;
-
    begin
       String_List.Set_Object (List, Internal);
       return List;
    end Notify_Get_Server_Caps;
 
-   ---------------------
-   -- Get_Server_Info --
-   ---------------------
+   ----------------------------
+   -- Notify_Get_Server_Info --
+   ----------------------------
 
    function Notify_Get_Server_Info
      (Name         : out String_Ptr;
@@ -138,7 +142,6 @@ package body Notify is
       Ven  : aliased chars_ptr;
       Ver  : aliased chars_ptr;
       Spec : aliased chars_ptr;
-
    begin
       R := 0 /= Internal (N'Access, Ven'Access, Ver'Access, Spec'Access);
 

@@ -60,9 +60,9 @@ begin
       "Ada binding to the libnotify.",
       "The simple notification.",
       "");
-   Set_Timeout (Notification, NOTIFY_EXPIRES_DEFAULT);
-   R := Show (Notification);
-   Unref (Notification);
+   Notification.Set_Timeout (NOTIFY_EXPIRES_DEFAULT);
+   R := Notification.Show;
+   Notification.Unref;
 
    --  Create notification with icon.
    G_New
@@ -70,8 +70,8 @@ begin
       "Ada binding to the libnotify.",
       "The notification with icon.",
       "media-removable");
-   R := Show (Notification);
-   Unref (Notification);
+   R := Notification.Show;
+   Notification.Unref;
 
    --  Create notification with customized body text.
    G_New
@@ -80,8 +80,8 @@ begin
       "Some <b>bold</b>, <u>underlined</u>, <i>italic</i>, " &
         "<a href='http://www.google.com'>linked on Google</a> text",
       "");
-   R := Show (Notification);
-   Unref (Notification);
+   R := Notification.Show;
+   Notification.Unref;
 
    --  Get and print information about server.
    R := Notify_Get_Server_Info (Name, Vendor, Version, Spec_Version);

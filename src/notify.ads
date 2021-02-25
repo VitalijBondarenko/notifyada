@@ -26,7 +26,7 @@
 -- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                   --
 ------------------------------------------------------------------------------
 
---  Notification API
+--  Notify library API
 
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
@@ -40,6 +40,13 @@ package Notify is
    --
    --  App_Name : The name of the application initializing libnotify.
    --  Returns  : TRUE if successful, or FALSE on error.
+
+   procedure Notify_Init (App_Name : UTF8_String);
+   --  Initialized libnotify. This must be called before any other functions.
+   --  The procedure ignores the initialization error. Use Notify_Is_Initted
+   --  function to get whether or not libnotify is initialized.
+   --
+   --  App_Name : The name of the application initializing libnotify.
 
    procedure Notify_Uninit;
    --  Uninitialized libnotify.
