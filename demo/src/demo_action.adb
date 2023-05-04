@@ -31,17 +31,17 @@ with Ada.Strings.Unbounded;    use Ada.Strings.Unbounded;
 with Ada.Text_IO;              use Ada.Text_IO;
 with Ada.Text_IO.Unbounded_IO; use Ada.Text_IO.Unbounded_IO;
 
+with Glib;                     use Glib;
+with Glib.Values;              use Glib.Values;
 with Gtk.Main;
 with Gtk.Enums;                use Gtk.Enums;
                                use Gtk.Enums.String_List;
-with Glib;                     use Glib;
-with Glib.Values;              use Glib.Values;
 
 with Notify;                   use Notify;
 with Notify.Notification;      use Notify.Notification;
-with Demo_Action_Callbacks;    use Demo_Action_Callbacks;
 
-with GPS_Utils;                use GPS_Utils;
+with Demo_Action_Callbacks;    use Demo_Action_Callbacks;
+with Restore_GPS_Startup_Values;
 
 procedure Demo_Action is
    Notification : Notify_Notification;
@@ -89,7 +89,13 @@ begin
    --  Show Notification on the screen.
    R := Notification.Show;
 
-   Gtk.Main.Main;
+   if R then
+      Gtk.Main.Main;
+   else
+      Put_Line ("ERROR: can't display notification.");
+   end if;
 
    Notify_Uninit;
+exception
+   when others => Notify_Uninit;
 end Demo_Action;

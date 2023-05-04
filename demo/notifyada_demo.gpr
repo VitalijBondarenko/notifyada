@@ -1,4 +1,3 @@
-with "gnatstudio_startup.gpr";
 with "../notifyada.gpr";
 
 project Notifyada_Demo is

@@ -37,7 +37,7 @@ with Gtk.Main;
 with Notify;              use Notify;
 with Notify.Notification; use Notify.Notification;
 
-with GPS_Utils;           use GPS_Utils;
+with Restore_GPS_Startup_Values;
 
 procedure Demo is
    Notification : Notify_Notification;
@@ -85,16 +85,20 @@ begin
 
    --  Get and print information about server.
    R := Notify_Get_Server_Info (Name, Vendor, Version, Spec_Version);
-   Put_Line ("Server information :");
-   Put_Line ("Name : " & Name.all);
-   Put_Line ("Vendor : " & Vendor.all);
-   Put_Line ("Version : " & Version.all);
-   Put_Line ("Spec version : " & Spec_Version.all);
-   New_Line;
+
+   if R then
+      Put_Line ("Server information :");
+      Put_Line ("Name : " & Name.all);
+      Put_Line ("Vendor : " & Vendor.all);
+      Put_Line ("Version : " & Version.all);
+      Put_Line ("Spec version : " & Spec_Version.all);
+      New_Line;
+   end if;
 
    --  Get and print information about server capabilities.
    Server_Caps := Notify_Get_Server_Caps;
    Put_Line ("Server capabilities :");
+
    while Server_Caps /= String_List.Null_List loop
       Put_Line (String_List.Get_Data (Server_Caps));
       Server_Caps := String_List.Next (Server_Caps);
@@ -102,4 +106,9 @@ begin
 
    Free_String_List (Server_Caps);
    Notify_Uninit;
+
+exception
+   when others =>
+      Free_String_List (Server_Caps);
+      Notify_Uninit;
 end Demo;
