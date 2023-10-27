@@ -46,6 +46,7 @@ package body Demo_Action_Callbacks is
    begin
       Put_Line ("Action : " & Action);
       Gtk.Main.Main_Quit;
+      Put_Line ("Activation Token : " & Notification.Get_Activation_Token);
       Put_Line ("Action button pressed." & ASCII.LF & "Goodbye!");
    end Action_Callback;
 

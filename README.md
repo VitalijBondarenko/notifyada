@@ -5,8 +5,8 @@ NotifyAda is a binding to the libnotify library.
 Installation
 ------------
 NotifyAda depends on:
-   * libnotify >= 0.7.x (http://ftp.gnome.org/pub/gnome/sources/libnotify/)
-   * GtkAda 3.x (https://github.com/AdaCore/gtkada)
+   * [libnotify >= 0.7.10](http://ftp.gnome.org/pub/gnome/sources/libnotify/)
+   * [GtkAda](https://github.com/AdaCore/gtkada)
 
 The library does not require special installation. The library's source tree
 can be put in a directory and used as-is.

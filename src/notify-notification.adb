@@ -338,9 +338,35 @@ package body Notify.Notification is
       return Internal (Notification.Get_Object);
    end Get_Closed_Reason;
 
-   ----------------------------------
-   -- package Add_Action_User_Data --
-   ----------------------------------
+   --------------------------
+   -- Get_Activation_Token --
+   --------------------------
+
+   function Get_Activation_Token
+     (Notification : not null access Notify_Notification_Record) return String
+   is
+      function Internal (Notification : System.Address) return chars_ptr;
+      pragma Import (C, Internal, "notify_notification_get_activation_token");
+
+      Tmp_Res : chars_ptr;
+   begin
+      Tmp_Res := Internal (Notification.Get_Object);
+
+      if Tmp_Res = Null_Ptr then
+         return "";
+      else
+         declare
+            T : UTF8_String := Value (Tmp_Res);
+         begin
+            Free (Tmp_Res);
+            return T;
+         end;
+      end if;
+   end Get_Activation_Token;
+
+   ----------------------------------------------------------------------------
+   --  package Add_Action_User_Data
+   ----------------------------------------------------------------------------
 
    package body Add_Action_User_Data is
 
@@ -394,9 +420,9 @@ package body Notify.Notification is
 
    end Add_Action_User_Data;
 
-   ----------------------
-   --  Signal handling --
-   ----------------------
+   ----------------------------------------------------------------------------
+   --  Signal handling
+   ----------------------------------------------------------------------------
 
    function Cb_To_Address is new Ada.Unchecked_Conversion
      (Cb_Notify_Notification_Void, System.Address);

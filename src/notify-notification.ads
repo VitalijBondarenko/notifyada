@@ -214,9 +214,20 @@ package Notify.Notification is
    --  Notification : The notification.
    --  Returns      : The closed reason code.
 
-   ----------------------------------
-   -- package Add_Action_User_Data --
-   ----------------------------------
+   function Get_Activation_Token
+     (Notification : not null access Notify_Notification_Record) return String;
+   --  Gets the activation token of the Notification.
+   --  If an an action is currently being activated, return the activation
+   --  token. This function is intended to be used in a Notify_Action_Callback
+   --  to get the activation token for the activated action, if the
+   --  notification daemon supports it.
+   --
+   --  Notification : The notification.
+   --  Returns      : The current activation token, or empty string if none.
+
+   ----------------------------------------------------------------------------
+   --  package Add_Action_User_Data
+   ----------------------------------------------------------------------------
 
    generic
       type User_Data_Type (<>) is private;
@@ -247,9 +258,9 @@ package Notify.Notification is
 
    end Add_Action_User_Data;
 
-   ----------------
-   -- Properties --
-   ----------------
+   ----------------------------------------------------------------------------
+   --  Properties
+   ----------------------------------------------------------------------------
 
    App_Name_Property      : constant Glib.Properties.Property_String;
    --  The application name to use for this notification.
@@ -277,9 +288,9 @@ package Notify.Notification is
    --  The summary text.
    --  Default value: ""
 
-   -------------
-   -- Signals --
-   -------------
+   ----------------------------------------------------------------------------
+   --  Signals
+   ----------------------------------------------------------------------------
 
    type Cb_Notify_Notification_Void is not null access procedure
      (Self : access Notify_Notification_Record'Class);

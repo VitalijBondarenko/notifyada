@@ -30,7 +30,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "-- Copyright (c) 2014-2015 Vitalij Bondarenko <vibondare@gmail.com>         --"
+          "text": "-- Copyright (c) 2014-2023 Vitalii Bondarenko <vibondare@gmail.com>         --"
         }
       ]
     },
@@ -311,7 +311,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Notification API"
+          "text": "--  Notify library API"
         }
       ]
     },
@@ -338,7 +338,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Ada.Strings.Unbounded"
+          "text": "Glib"
         },
         {
           "kind": "span",
@@ -348,7 +348,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "text",
-          "text": " "
+          "text": "      "
         },
         {
           "kind": "span",
@@ -363,7 +363,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Ada.Strings.Unbounded"
+          "text": "Glib"
         },
         {
           "kind": "span",
@@ -376,119 +376,62 @@ GNATdoc.SourceFile = {
       "kind": "line",
       "number": 32,
       "children": [
+        {
+          "kind": "span",
+          "cssClass": "keyword",
+          "text": "with"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "Gtk.Enums"
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": ";"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "keyword",
+          "text": "use"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "Gtk.Enums"
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": ";"
+        }
       ]
     },
     {
       "kind": "line",
       "number": 33,
       "children": [
-        {
-          "kind": "span",
-          "cssClass": "keyword",
-          "text": "with"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": "Glib"
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": ";"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": "                  "
-        },
-        {
-          "kind": "span",
-          "cssClass": "keyword",
-          "text": "use"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": "Glib"
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": ";"
-        }
       ]
     },
     {
       "kind": "line",
       "number": 34,
-      "children": [
-        {
-          "kind": "span",
-          "cssClass": "keyword",
-          "text": "with"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": "Gtk.Enums"
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": ";"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": "             "
-        },
-        {
-          "kind": "span",
-          "cssClass": "keyword",
-          "text": "use"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": "Gtk.Enums"
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": ";"
-        }
-      ]
-    },
-    {
-      "kind": "line",
-      "number": 35,
-      "children": [
-      ]
-    },
-    {
-      "kind": "line",
-      "number": 36,
       "children": [
         {
           "kind": "span",
@@ -504,7 +447,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "Notify",
-          "href": "docs/notify.html#L36C9"
+          "href": "docs/notify___spec.html#L34C9"
         },
         {
           "kind": "span",
@@ -520,13 +463,13 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 37,
+      "number": 35,
       "children": [
       ]
     },
     {
       "kind": "line",
-      "number": 38,
+      "number": 36,
       "children": [
         {
           "kind": "span",
@@ -546,8 +489,8 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Init",
-          "href": "docs/notify.html#L38C13"
+          "text": "Notify_Init",
+          "href": "docs/notify___spec.html#L36C13"
         },
         {
           "kind": "span",
@@ -563,7 +506,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "App_Name",
-          "href": "docs/notify.html#L38C19"
+          "href": "docs/notify___spec.html#L36C26"
         },
         {
           "kind": "span",
@@ -619,7 +562,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 39,
+      "number": 37,
       "children": [
         {
           "kind": "span",
@@ -635,7 +578,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 40,
+      "number": 38,
       "children": [
         {
           "kind": "span",
@@ -651,7 +594,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 41,
+      "number": 39,
       "children": [
         {
           "kind": "span",
@@ -667,7 +610,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 42,
+      "number": 40,
       "children": [
         {
           "kind": "span",
@@ -683,13 +626,13 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 43,
+      "number": 41,
       "children": [
       ]
     },
     {
       "kind": "line",
-      "number": 44,
+      "number": 42,
       "children": [
         {
           "kind": "span",
@@ -709,13 +652,86 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Uninit",
-          "href": "docs/notify.html#L44C14"
+          "text": "Notify_Init",
+          "href": "docs/notify___spec.html#L42C14"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "("
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "App_Name",
+          "href": "docs/notify___spec.html#L42C27"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": ":"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "UTF8_String"
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": ")"
         },
         {
           "kind": "span",
           "cssClass": "identifier",
           "text": ";"
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 43,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "comment",
+          "text": "--  Initialized libnotify. This must be called before any other functions."
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 44,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "comment",
+          "text": "--  The procedure ignores the initialization error. Use Notify_Is_Initted"
         }
       ]
     },
@@ -731,7 +747,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Uninitialized libnotify."
+          "text": "--  function to get whether or not libnotify is initialized."
         }
       ]
     },
@@ -747,7 +763,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  This should be called when the program no longer needs libnotify for"
+          "text": "--"
         }
       ]
     },
@@ -763,7 +779,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  the rest of its lifecycle, typically just before exitting."
+          "text": "--  App_Name : The name of the application initializing libnotify."
         }
       ]
     },
@@ -785,7 +801,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "keyword",
-          "text": "function"
+          "text": "procedure"
         },
         {
           "kind": "span",
@@ -795,28 +811,8 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Is_Initted",
-          "href": "docs/notify.html#L49C13"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "keyword",
-          "text": "return"
-        },
-        {
-          "kind": "span",
-          "cssClass": "text",
-          "text": " "
-        },
-        {
-          "kind": "span",
-          "cssClass": "identifier",
-          "text": "Boolean"
+          "text": "Notify_Uninit",
+          "href": "docs/notify___spec.html#L49C14"
         },
         {
           "kind": "span",
@@ -837,7 +833,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Gets whether or not libnotify is initialized."
+          "text": "--  Uninitialized libnotify."
         }
       ]
     },
@@ -853,7 +849,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--"
+          "text": "--  This should be called when the program no longer needs libnotify for"
         }
       ]
     },
@@ -869,7 +865,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Returns : TRUE if libnotify is initialized, or FALSE otherwise."
+          "text": "--  the rest of its lifecycle, typically just before exitting."
         }
       ]
     },
@@ -901,8 +897,8 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Get_App_Name",
-          "href": "docs/notify.html#L54C13"
+          "text": "Notify_Is_Initted",
+          "href": "docs/notify___spec.html#L54C13"
         },
         {
           "kind": "span",
@@ -922,7 +918,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "UTF8_String"
+          "text": "Boolean"
         },
         {
           "kind": "span",
@@ -943,7 +939,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Gets the application name registered."
+          "text": "--  Gets whether or not libnotify is initialized."
         }
       ]
     },
@@ -975,7 +971,7 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "comment",
-          "text": "--  Returns : The registered application name, passed to Notify_Init."
+          "text": "--  Returns : TRUE if libnotify is initialized, or FALSE otherwise."
         }
       ]
     },
@@ -997,6 +993,112 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "keyword",
+          "text": "function"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "Notify_Get_App_Name",
+          "href": "docs/notify___spec.html#L59C13"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "keyword",
+          "text": "return"
+        },
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": " "
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": "UTF8_String"
+        },
+        {
+          "kind": "span",
+          "cssClass": "identifier",
+          "text": ";"
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 60,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "comment",
+          "text": "--  Gets the application name registered."
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 61,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "comment",
+          "text": "--"
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 62,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "comment",
+          "text": "--  Returns : The registered application name, passed to Notify_Init."
+        }
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 63,
+      "children": [
+      ]
+    },
+    {
+      "kind": "line",
+      "number": 64,
+      "children": [
+        {
+          "kind": "span",
+          "cssClass": "text",
+          "text": "   "
+        },
+        {
+          "kind": "span",
+          "cssClass": "keyword",
           "text": "procedure"
         },
         {
@@ -1007,8 +1109,8 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Set_App_Name",
-          "href": "docs/notify.html#L59C14"
+          "text": "Notify_Set_App_Name",
+          "href": "docs/notify___spec.html#L64C14"
         },
         {
           "kind": "span",
@@ -1024,7 +1126,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "App_Name",
-          "href": "docs/notify.html#L59C28"
+          "href": "docs/notify___spec.html#L64C35"
         },
         {
           "kind": "span",
@@ -1060,7 +1162,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 60,
+      "number": 65,
       "children": [
         {
           "kind": "span",
@@ -1076,7 +1178,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 61,
+      "number": 66,
       "children": [
         {
           "kind": "span",
@@ -1092,7 +1194,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 62,
+      "number": 67,
       "children": [
         {
           "kind": "span",
@@ -1108,13 +1210,13 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 63,
+      "number": 68,
       "children": [
       ]
     },
     {
       "kind": "line",
-      "number": 64,
+      "number": 69,
       "children": [
         {
           "kind": "span",
@@ -1134,8 +1236,8 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Get_Server_Caps",
-          "href": "docs/notify.html#L64C13"
+          "text": "Notify_Get_Server_Caps",
+          "href": "docs/notify___spec.html#L69C13"
         },
         {
           "kind": "span",
@@ -1166,7 +1268,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 65,
+      "number": 70,
       "children": [
         {
           "kind": "span",
@@ -1182,7 +1284,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 66,
+      "number": 71,
       "children": [
         {
           "kind": "span",
@@ -1198,7 +1300,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 67,
+      "number": 72,
       "children": [
         {
           "kind": "span",
@@ -1214,7 +1316,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 68,
+      "number": 73,
       "children": [
         {
           "kind": "span",
@@ -1230,7 +1332,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 69,
+      "number": 74,
       "children": [
         {
           "kind": "span",
@@ -1246,13 +1348,13 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 70,
+      "number": 75,
       "children": [
       ]
     },
     {
       "kind": "line",
-      "number": 71,
+      "number": 76,
       "children": [
         {
           "kind": "span",
@@ -1272,14 +1374,14 @@ GNATdoc.SourceFile = {
         {
           "kind": "span",
           "cssClass": "identifier",
-          "text": "Get_Server_Info",
-          "href": "docs/notify.html#L71C13"
+          "text": "Notify_Get_Server_Info",
+          "href": "docs/notify___spec.html#L76C13"
         }
       ]
     },
     {
       "kind": "line",
-      "number": 72,
+      "number": 77,
       "children": [
         {
           "kind": "span",
@@ -1295,7 +1397,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "Name",
-          "href": "docs/notify.html#L72C7"
+          "href": "docs/notify___spec.html#L77C7"
         },
         {
           "kind": "span",
@@ -1336,7 +1438,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 73,
+      "number": 78,
       "children": [
         {
           "kind": "span",
@@ -1347,7 +1449,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "Vendor",
-          "href": "docs/notify.html#L73C7"
+          "href": "docs/notify___spec.html#L78C7"
         },
         {
           "kind": "span",
@@ -1388,7 +1490,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 74,
+      "number": 79,
       "children": [
         {
           "kind": "span",
@@ -1399,7 +1501,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "Version",
-          "href": "docs/notify.html#L74C7"
+          "href": "docs/notify___spec.html#L79C7"
         },
         {
           "kind": "span",
@@ -1440,7 +1542,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 75,
+      "number": 80,
       "children": [
         {
           "kind": "span",
@@ -1451,7 +1553,7 @@ GNATdoc.SourceFile = {
           "kind": "span",
           "cssClass": "identifier",
           "text": "Spec_Version",
-          "href": "docs/notify.html#L75C7"
+          "href": "docs/notify___spec.html#L80C7"
         },
         {
           "kind": "span",
@@ -1517,7 +1619,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 76,
+      "number": 81,
       "children": [
         {
           "kind": "span",
@@ -1533,7 +1635,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 77,
+      "number": 82,
       "children": [
         {
           "kind": "span",
@@ -1549,7 +1651,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 78,
+      "number": 83,
       "children": [
         {
           "kind": "span",
@@ -1565,7 +1667,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 79,
+      "number": 84,
       "children": [
         {
           "kind": "span",
@@ -1581,7 +1683,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 80,
+      "number": 85,
       "children": [
         {
           "kind": "span",
@@ -1597,7 +1699,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 81,
+      "number": 86,
       "children": [
         {
           "kind": "span",
@@ -1613,7 +1715,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 82,
+      "number": 87,
       "children": [
         {
           "kind": "span",
@@ -1629,7 +1731,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 83,
+      "number": 88,
       "children": [
         {
           "kind": "span",
@@ -1645,7 +1747,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 84,
+      "number": 89,
       "children": [
         {
           "kind": "span",
@@ -1661,7 +1763,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 85,
+      "number": 90,
       "children": [
         {
           "kind": "span",
@@ -1677,7 +1779,7 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 86,
+      "number": 91,
       "children": [
         {
           "kind": "span",
@@ -1693,13 +1795,13 @@ GNATdoc.SourceFile = {
     },
     {
       "kind": "line",
-      "number": 87,
+      "number": 92,
       "children": [
       ]
     },
     {
       "kind": "line",
-      "number": 88,
+      "number": 93,
       "children": [
         {
           "kind": "span",
